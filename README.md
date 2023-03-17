@@ -18,8 +18,10 @@
     - This allows them to add or remove callback functions according to user input, game state or other runtime conditions. 
     
 # 0- Create Classes
-  - Create a Sender class that will send some information using the delegate
-  - Create a Receiver class that will receive the information and use this to execute the callback function
+  - Create a Sender C++ class of AActor type that will send some information using the delegate
+  - Create a Receiver C++ class of AActor type that will receive the information and use this to execute the callback function
+  - Create a blueprint based on the Sender C++ class
+  - Create a blueprint based on the Receiver C++ class
   
 # 1- DECLARE THE DELEGATE FUNCTION
 
