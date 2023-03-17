@@ -85,6 +85,90 @@ void ASender::Send()
     - In the Receiver class header file, Declare an object from the Sender class to access its delegate function and bind it to the receiver callback function
     - Declare a Receive() function that will be our callback function and will be called when the delegate executes and expose it with UFUNCTION() - its parameter type should be the same as that of the delegate function that will call it.
     - Declare an EndPlay funtion and override its parent
-		  - Will be used to unbind he the Callback function from the Delegate function if Sender or Receiver die or move out of the game
+      - Will be used to unbind he the Callback function from the Delegate function if Sender or Receiver die or move out of the game
     
-  
+```cpp
+private:
+	//Declare a pointer object to my sender class
+	ASender* MySender;
+
+public:	
+	// Sets default values for this actor's properties
+	AReceiver();
+
+	//3- Declare the Callback function
+	UFUNCTION()
+	void Receive(FString Message);
+
+	//Declare an EndPlay funtion and override its parent
+		//Will be used to unbind he the Callback function from the Delegate function if Sender or Receiver die or move out of the game
+	UFUNCTION()
+	virtual void EndPlay(const EEndPlayReason::Type RemovedFromWorld) override;
+```
+
+  # 4- DEFINE THE CALLBACK FUNCTION
+    - Define the callback function to Receive and print message
+	
+```cpp
+void AReceiver::Receive(FString Message)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Executing the Callback function RECEIVE and receiving the parameter from the Delegate"));
+	UE_LOG(LogTemp, Warning, TEXT("This is my message : %s "), *Message);
+}
+```
+
+  # 5- FIND THE DELEGATE
+    - In Unreal Engine, Project Settings, create a tag for objects from the "Sender" class
+      - Place sender actor in the world and, in its blueprint, create and select a sender tag
+	
+    - In the Receiver class implementation file, Find the all actors with tag "Sender" and place them into an array of actors.
+    - Get the first sender actor of the array, cast it type ASender, and save into the sender object
+
+```cpp
+void AReceiver::BeginPlay()
+{
+	Super::BeginPlay();
+
+	//5- FIND DELEGATE:
+		//Find the all actors with tag "Sender" and place them into an array of actors
+		//Get the first sender actor of the array, cast it type ASender, and save into the sender object
+		//In Unreal, create a "Sender" tag in project settings and include it in the Sender actor BP
+
+	TArray<AActor*> TaggedActors;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Sender", TaggedActors);
+	MySender = Cast<ASender>(TaggedActors[0]);
+}
+```
+
+  # 6- BIND THE DELEGATE TO THE CALLBACK FUNCTION
+
+    - In the Receiver class BeginPlay(), Access the delegate object from the Sender class and use it to Bind this object "Sender" to the callback funtion "Receive"
+	
+```cpp
+void AReceiver::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	//6- BIND
+		//Access the delegate object from the Sender class and use it to Bind this object "Sender" to the callback funtion "Receive"
+	MySender->MySenderDelegate.BindUObject(this, &AReceiver::Receive);
+}
+``` 
+	
+  # 7- UNBIND THE DELEGATE FROM THE CALLBACK FUNCTION
+	
+  - On EndPlay() Access the delegate object from the sender class and use the Unbind function to unbind it from its callback function
+
+```cpp
+void AReceiver::EndPlay(const EEndPlayReason::Type)
+{
+	MySender->MySenderDelegate.Unbind();
+}
+``` 
+	
+	
+	
+	
+	
+	
+	
