@@ -27,7 +27,7 @@
 
   - In the Sender class header file, Declare the type of delegate that I am going to use.
     - MACRO OF DELEGATES DECLARATION<num of params>(name of this delegate, type of the param this class will send to the receiver)
-  - Declare a Send() function to contain and execute the delegate
+  - Declare a Send() function to contain from which the delegate will be executed 
   - Declare a delegate object that will be used to bound my delegate function to its callback function 
   
   ```cpp
@@ -61,7 +61,7 @@ public:
   
   # 2- DEFINE THE DELEGATE FUNCTION 
   
-  - In the implementation file, define the sender function from which the delegate will be executed and send its parameter to the callback function - respecting the parameter type defined in the delegate function declaration.
+  - In the implementation file, define the sender function, inside of it execute the delegate if it is really bound to a callback function and pass the parameter that will be sent to the callback function - respecting the parameter type defined in the delegate function declaration.
   - Call the sender function from BeginPlay()
   
   ```cpp
