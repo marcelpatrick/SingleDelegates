@@ -22,6 +22,7 @@
   - Create a Receiver C++ class of AActor type that will receive the information and use this to execute the callback function
   - Create a blueprint based on the Sender C++ class
   - Create a blueprint based on the Receiver C++ class
+  - Place both blueprints in the world
   
 # 1- DECLARE THE DELEGATE FUNCTION
 
@@ -121,7 +122,7 @@ void AReceiver::Receive(FString Message)
 
   # 5- FIND THE DELEGATE
   - In Unreal Engine, Project Settings, create a tag for objects from the "Sender" class
-  - Place sender actor in the world and, in its blueprint, create and select a sender tag
+  - Inside the sender actor blueprint, create and select a sender tag
 	
   - In the Receiver class implementation file, Find the all actors with tag "Sender" and place them into an array of actors.
   - Get the first sender actor of the array, cast it type ASender, and save into the sender object
