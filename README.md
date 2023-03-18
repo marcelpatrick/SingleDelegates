@@ -63,14 +63,11 @@ public:
   # 2- DEFINE THE DELEGATE FUNCTION 
   
   - In the implementation file, define the sender function, inside of it execute the delegate if it is really bound to a callback function and pass the parameter that will be sent to the callback function - respecting the parameter type defined in the delegate function declaration.
-  - Call the sender function from BeginPlay()
   
   ```cpp
   void ASender::BeginPlay()
 {
 	Super::BeginPlay();
-
-	Send();	
 }
 
 //DELEGATE
