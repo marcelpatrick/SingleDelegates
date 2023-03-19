@@ -24,6 +24,8 @@
   - Create a blueprint based on the Receiver C++ class
   - Place both blueprints in the world
   
+  ### DELEGATE: DECLARE > DEFINE > CALLBACK: DECLARE > DEFINE > FIND > BIND > UNBIND
+  
 # 1- DECLARE THE DELEGATE FUNCTION
 
   - In the Sender class header file, Declare the type of delegate that I am going to use.
