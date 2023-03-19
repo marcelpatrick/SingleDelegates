@@ -24,7 +24,7 @@
   - Create a blueprint based on the Receiver C++ class
   - Place both blueprints in the world
   
-  ### DELEGATE: DECLARE > DEFINE (EXECUTE) > CALLBACK: DECLARE > DEFINE > FIND > BIND > UNBIND
+  ### DELEGATE: DECLARE (TEMPLATE) > DEFINE (EXECUTE) > CALLBACK: DECLARE > DEFINE > FIND > BIND > UNBIND
   
 # 1- DECLARE THE DELEGATE FUNCTION
 
