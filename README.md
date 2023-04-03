@@ -1,6 +1,11 @@
 # SingleDelegates
 
-# Definition of Delegates
+# Definitions 
+
+- Delegates / Invokers / Broadcasters: functions that SEND (broadcast) an event.
+- Callbacks / Listeners: functions that RECEIVE the event.
+
+## Delegates
   - Delegates are used in event-driven programming
   - They are functions that call other functions (callback functions or listeners) when an event occurs.
   - They are bound to their callback functions storing references to these functions and trigger their action when an event occurs.
